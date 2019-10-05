@@ -1,0 +1,23 @@
+.head {
+    color: rgb(41, 34, 44);
+}
+
+ion-text {
+
+    .info {
+        color: #7044ff !important;
+        font-weight: bold;
+        font-size: 15px;
+        margin: 3px;
+    }
+
+    .detail {
+        color: rgba(88, 88, 88, 0.753);
+        font-size: 15px;
+        margin: 3px;
+    }
+}
+
+ion-label {
+    margin-top: 10px !important;
+}

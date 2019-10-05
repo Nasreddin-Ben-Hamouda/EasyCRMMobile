@@ -1,0 +1,8 @@
+{
+  "name": "EasyCrm",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,23 @@
+ion-content {
+    --background: none;
+    background-image: url('/assets/login.svg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .logo {
+        margin: 30px;
+    }
+
+    .middle>* {
+        color: blueviolet;
+        align-items: center !important;
+        height: 100%;
+    }
+
+    .no {
+        text-shadow: 5px 5px 0px #fff,
+            5px 5px 0px rgba(0, 0, 0, 0.15);
+
+    }
+}

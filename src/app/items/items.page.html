@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of (items | async)">
+      <ion-label>
+        <ion-text>
+          <p class="info">Description</p>
+          <p>{{item.title}}</p>
+          <p>{{item.description}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-label>
+        <ion-text>
+          <p class="info">Rate</p>
+          <p>{{item.default_rate}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-label *ngIf="item.tax">
+        <ion-text>
+          <p class="info">tax</p>
+          <p>{{item.tax['title']}}</p>
+          <p>{{item.tax['rate']}}%</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

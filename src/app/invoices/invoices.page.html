@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>invoices</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item lines="none" margin *ngFor="let invoice of (invoices | async)" [routerLink]="[ '/invoices', invoice.id ]">
+      <div slot="start">
+        <ion-text class="info">
+          <p>{{invoice.naming_series}}{{invoice.naming_series_number}}</p>
+          <p>{{invoice.contact['display_name']}}</p>
+          <p> {{invoice.date | date: 'd,MMMM,yy' }}</p>
+        </ion-text>
+      </div>
+      <div slot="end" [ngSwitch]="invoice.payed">
+        <ion-text *ngSwitchCase="'0'" color="warning">
+          <p class="price">{{invoice.currency}} {{invoice.price}}</p>
+          <p class="price_info">{{invoice.payment}}</p>
+        </ion-text>
+        <ion-text *ngSwitchCase="'-1'" color="danger">
+          <p class="price">{{invoice.currency}} {{invoice.price}}</p>
+          <p class="price_info">{{invoice.payment}}</p>
+        </ion-text>
+        <ion-text *ngSwitchCase="'1'" color="success">
+          <p class="price">{{invoice.currency}} {{invoice.price}}</p>
+          <p class="price_info">{{invoice.payment}}</p>
+        </ion-text>
+      </div>
+
+      <!-- <ion-grid fixed>
+          <ion-row>
+            <ion-col size="4" text-left>{{invoice.naming_series}}{{invoice.naming_series_number}}</ion-col>
+            <ion-col size="2" text-left color="primary">
+              <ion-text color="primary">
+                <p>{{invoice.contact_id}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text class="ion-text-wrap" color="medium">
+                <p>{{invoice.contact['display_name']}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>estimates</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item lines="none" margin *ngFor="let estimate of (estimates | async)"
+      [routerLink]="[ '/estimates', estimate.id ]">
+      <div slot="start">
+        <ion-text class="info">
+          <p>{{estimate.naming_series}}{{estimate.naming_series_number}}</p>
+          <p>{{estimate.contact['display_name']}}</p>
+          <p> {{estimate.date | date: 'd,MMMM,yy' }}</p>
+        </ion-text>
+      </div>
+      <div slot="end">
+        <ion-text color="primary">
+          <p class="price">{{estimate.currency}} {{estimate.price}}</p>
+        </ion-text>
+
+      </div>
+
+      <!-- <ion-grid fixed>
+          <ion-row>
+            <ion-col size="4" text-left>{{estimate.naming_series}}{{estimate.naming_series_number}}</ion-col>
+            <ion-col size="2" text-left color="primary">
+              <ion-text color="primary">
+                <p>{{estimate.contact_id}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text class="ion-text-wrap" color="medium">
+                <p>{{estimate.contact['display_name']}}</p>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+
+    </ion-item>
+  </ion-list>
+</ion-content>

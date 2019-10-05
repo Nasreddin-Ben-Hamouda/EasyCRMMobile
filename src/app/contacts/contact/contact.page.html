@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="contacts"></ion-back-button>
+    </ion-buttons>
+    <ion-title>contact </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item lines="full" text-center>
+      <ion-label>
+        <ion-text class="head">
+          <h1>{{contact.display_name}}</h1>
+          <h2>{{contact.company}}</h2>
+          <h3 text-wrap>{{contact.activity}}</h3>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="full" text-center *ngIf="contact.note">
+      <ion-label>
+        <ion-text color="primary" text-wrap>
+          <h2>{{contact.note}}</h2>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+
+      <ion-label>
+        <ion-text color="" text-wrap>
+          <p class="info">Email</p>
+          <p class="detail">{{contact.email}}</p>
+
+          <p class="info">Phone</p>
+          <p class="detail">{{contact.phone}}</p>
+          <p class="info">Fiscal :</p>
+          <p class="detail">{{contact.fiscal_id}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-label style="">
+        <ion-text color="" text-wrap>
+          <p class="info">Web site</p>
+          <p class="detail">{{contact.website}}</p>
+          <p class="info">Country</p>
+          <p class="detail">{{contact.country}}</p>
+          <p class="info">Address</p>
+          <p class="detail"> {{contact.country.title}} {{contact.billing_address['state']}}
+            {{contact.city}} {{contact.billing_address['address']}}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="tertiary">
+    <ion-fab-button (click)="call(contact.phone)" color="tertiary">
+      <ion-icon name="call"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+</ion-content>

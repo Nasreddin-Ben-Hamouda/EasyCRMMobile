@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>payments</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item lines="none" margin *ngFor="let payment of (payments | async)" [routerLink]="[ '/payments', payment.id ]">
+      <div slot="start">
+        <ion-text class="info">
+          <p>{{payment.naming_series}}{{payment.naming_series_number}}</p>
+          <p>{{payment.contact['display_name']}}</p>
+          <p> {{payment.date | date: 'd MMMM yy' }}</p>
+        </ion-text>
+      </div>
+      <div slot="end" [ngSwitch]="payment.type">
+        <ion-text *ngSwitchCase="'1'" color="success">
+          <p class="price">{{payment.currency}} {{payment.amount}}</p>
+          <p class="price_info">Invoice</p>
+        </ion-text>
+        <ion-text *ngSwitchCase="'2'" color="danger">
+          <p class="price">{{payment.currency}} {{payment.amount}}</p>
+          <p class="price_info">Expense</p>
+        </ion-text>
+      </div>
+
+    </ion-item>
+  </ion-list>
+</ion-content>

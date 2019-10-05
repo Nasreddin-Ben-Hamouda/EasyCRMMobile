@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="expenses"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Client {{expense.contact['display_name']}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <span class="price"> {{ expense.currency }} {{ expense.price }}</span>
+          <br />
+          <span style="font-size: 20px">Total price</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10">
+          <span style="font-size: 25px">{{ expense.naming_series }}{{
+              expense.naming_series_number
+            }}</span>
+          <br />
+          <span style="font-size: 20px">Reference</span>
+        </ion-col>
+        <ion-col size="">
+          <ion-icon style="zoom: 2" name="download" (click)="downloadPdf(expense.pdf)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="calendar"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Date
+      </ion-col>
+    </ion-row>
+    <ion-row class="info">
+      <ion-col size="12">
+        <ion-text color="">
+          <p>Date : {{ expense.date | date: "d,MMMM,yy" }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="apps"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Items
+      </ion-col>
+    </ion-row>
+    <ion-item *ngFor="let item of expense.items" lines="none">
+      <div slot="start">
+        <ion-text class="info">
+          <p>{{ item.title }}</p>
+        </ion-text>
+      </div>
+      <div slot="end">
+        <ion-text>
+          <p>{{ expense.currency }} {{ item.pivot["rate"] }}</p>
+        </ion-text>
+      </div>
+    </ion-item>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="bookmark"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Information
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="">
+          <p *ngIf="expense.order_number > 0">
+            Order number : {{ expense.order_number }}
+          </p>
+          <p *ngIf="expense.discount > 0">discount : {{ expense.discount }}</p>
+          <p *ngIf="expense.conditions > 0">
+            conditions : {{ expense.conditions }}
+          </p>
+          <p>Tax : {{ expense.tax }}</p>
+          <p *ngIf="expense.tax_type == 1">Tax type: HT</p>
+          <p *ngIf="expense.tax_type == 2">Tax type: TTC</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon name="pin" style="zoom: 2"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Address
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text class="info">
+          <p>{{expense.contact['display_name']}}</p>
+          <p>{{expense.contact['display_name']}}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="trans"> 
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="invoices"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Client; {{invoice.contact['display_name']}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <span class="price"> {{ invoice.currency }} {{ invoice.price }}</span>
+          <br />
+          <span style="font-size: 20px">Total price</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10">
+          <span style="font-size: 25px">{{ invoice.naming_series }}{{
+              invoice.naming_series_number
+            }}</span>
+          <br />
+          <span style="font-size: 20px">Reference</span>
+        </ion-col>
+        <ion-col size="">
+          <ion-icon style="zoom: 2" name="download" (click)="downloadPdf(invoice.pdf)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="calendar"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Date
+      </ion-col>
+    </ion-row>
+    <ion-row class="info">
+      <ion-col size="12">
+        <ion-text color="">
+          <p>Date : {{ invoice.date | date: "d,MMMM,yy" }}</p>
+          <p>Due date : {{ invoice.date | date: "d,MMMM,yy" }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="apps"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Items
+      </ion-col>
+    </ion-row>
+    <ion-item *ngFor="let item of invoice.items" lines="none">
+      <div slot="start">
+        <ion-text class="info">
+          <p>{{ item.title }}</p>
+        </ion-text>
+      </div>
+      <div slot="end">
+        <ion-text>
+          <p>{{ invoice.currency }} {{ item.pivot["rate"] }}</p>
+        </ion-text>
+      </div>
+    </ion-item>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="bookmark"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Information
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="">
+          <p *ngIf="invoice.order_number > 0">
+            Order number : {{ invoice.order_number }}
+          </p>
+          <p *ngIf="invoice.discount > 0">discount : {{ invoice.discount }}</p>
+          <p *ngIf="invoice.conditions > 0">
+            conditions : {{ invoice.conditions }}
+          </p>
+          <p>Tax : {{ invoice.tax }}</p>
+          <p *ngIf="invoice.tax_type == 1">Tax type: HT</p>
+          <p *ngIf="invoice.tax_type == 2">Tax type: TTC</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon name="pin" style="zoom: 2"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Address
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text class="info">
+          <p>{{invoice.contact['display_name']}}</p>
+          <p>{{invoice.contact['display_name']}}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-content>

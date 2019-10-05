@@ -1,0 +1,87 @@
+<ion-content>
+  <div margin class="header">
+    <ion-text margin>
+      <h1>Welcome to</h1>
+    </ion-text>
+    <ion-img style="width: 50%" src="assets/easys.svg"></ion-img>
+    <ion-text>
+      <h2>
+      
+      </h2>
+    </ion-text>
+  </div>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="allContacts()">
+          <ion-card-header>
+            <ion-icon style="zoom:3.0;" name="person"></ion-icon>
+            <ion-card-title>
+              Contact
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="allItems()">
+          <ion-card-header>
+            <ion-icon style="zoom:3.0;" name="briefcase"></ion-icon>
+            <ion-card-title>
+              Items
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="allInvoices()">
+          <ion-card-header>
+            <ion-icon style="zoom:3.0;" name="document"></ion-icon>
+            <ion-card-title>
+              Invoice
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card (click)="allEstimates()">
+          <ion-card-header>
+            <ion-icon style="zoom: 3.0;" name="copy"></ion-icon>
+            <ion-card-title>
+              Estimate
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="allExpense()">
+          <ion-card-header>
+            <ion-icon style=" zoom: 3.0;" name="archive">
+            </ion-icon>
+            <ion-card-title>
+              Expense
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card (click)="allPayment()">
+          <ion-card-header>
+            <ion-icon style="zoom: 3.0;" name="cash"></ion-icon>
+            <ion-card-title>
+              Payment
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" color="trans">
+    <ion-fab-button (click)="logout()" color="trans">
+      <ion-icon style="color: aliceblue" name="log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

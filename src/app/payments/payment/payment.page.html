@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="payments"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Client {{payment.contact['display_name']}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <span class="price"> {{ payment.currency }} {{ payment.amount }}</span>
+          <br />
+          <span style="font-size: 20px">Total price</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10">
+          <span style="font-size: 25px">{{ payment.naming_series }}{{
+              payment.naming_series_number
+            }}</span>
+          <br />
+          <span style="font-size: 20px">Reference</span>
+        </ion-col>
+        <ion-col size="">
+          <ion-icon style="zoom: 2" name="download" (click)="downloadPdf(payment.pdf)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="calendar"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Date
+      </ion-col>
+    </ion-row>
+    <ion-row class="info">
+      <ion-col size="12">
+        <ion-text color="">
+          <p>Date : {{ payment.date | date: "d,MMMM,yy" }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="apps"></ion-icon>
+      </ion-col>
+      <ion-col *ngIf="payment.type == 1" size="10" padding>
+        Invoices
+      </ion-col>
+      <ion-col *ngIf="payment.type == 2" size="10" padding>
+        Expenses
+      </ion-col>
+    </ion-row>
+    <div *ngIf="payment.type == 1">
+      <ion-item *ngFor="let invoice of payment.invoices" lines="none">
+        <div slot="start">
+          <ion-text class="info">
+            <p>{{ invoice.naming_series }}{{invoice.naming_series_number}}</p>
+          </ion-text>
+        </div>
+        <div slot="end">
+          <ion-text>
+            <p>{{ payment.currency }} {{ invoice.pivot["rate"] }}</p>
+          </ion-text>
+        </div>
+      </ion-item>
+    </div>
+    <div *ngIf="payment.type == 2">
+      <ion-item *ngFor="let expense of payment.expenses" lines="none">
+        <div slot="start">
+          <ion-text class="info">
+            <p>{{ expense.naming_series }}{{expense.naming_series_number}}</p>
+          </ion-text>
+        </div>
+        <div slot="end">
+          <ion-text>
+            <p>{{ payment.currency }} {{ expense.pivot["rate"] }}</p>
+          </ion-text>
+        </div>
+      </ion-item>
+    </div>
+    <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon style="zoom: 2" name="bookmark"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Information
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="">
+          <p *ngIf="payment.reference_number">
+            Reference number : {{ payment.reference_number }}
+          </p>
+          <p *ngIf="payment.note">Note : {{ payment.note }}</p>
+          <p *ngIf="payment.payment_type">
+            Payment type : {{ payment.payment_type['title'] }}
+          </p>
+          <p *ngIf="payment.bank_tax">Tax type: {{ payment.bank_tax }}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="info_head">
+      <ion-col size="1">
+        <ion-icon name="pin" style="zoom: 2"></ion-icon>
+      </ion-col>
+      <ion-col size="10" padding>
+        Address
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text class="info">
+          <p>{{payment.contact['display_name']}}</p>
+          <p>{{payment.contact['display_name']}}</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>-->
+  </ion-grid>
+</ion-content>
